@@ -1,1 +1,10 @@
-<h1 class="text-center text-red-900 text-lg">hello</h1>
+<h1
+  #ele="directive"
+  appTest
+  (togeel)="getData($event)"
+  (mouseover)="ele.hi()"
+  [defult]="'black'"
+  [changed]="'yellow'"
+>
+  hello
+</h1>

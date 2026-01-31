@@ -4,6 +4,16 @@ import { Component } from '@angular/core';
   selector: 'app-navbar',
   imports: [],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.scss',
+  styleUrl: './navbar.css',
 })
-export class Navbar {}
+export class Navbar {
+  ngOnInit(): void {
+    if (typeof document !== 'undefined') {
+      import('flowbite')
+        .then((m) => {
+          if (m.initFlowbite) m.initFlowbite();
+        })
+        .catch((err) => console.error('Failed to load Flowbite (client-only):', err));
+    }
+  }
+}

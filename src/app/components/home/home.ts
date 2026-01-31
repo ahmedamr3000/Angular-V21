@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal, WritableSignal } from '@angular/core';
+import { Test } from '../../directives/test';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  standalone: true,
+  imports: [Test],
   templateUrl: './home.html',
-  styleUrl: './home.scss',
+  styleUrls: ['./home.css'],
 })
 export class Home {
-
+  getData(isHover: boolean): void {
+    console.log(isHover);
+  }
 }
