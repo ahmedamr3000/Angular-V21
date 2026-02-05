@@ -8,7 +8,15 @@ export const routes: Routes = [
     loadComponent: () => import('./components/home/home').then((m) => m.Home),
   },
   {
+    path: 'recipes',
+    loadComponent: () => import('./components/recipes/recipes').then((m) => m.Recipes),
+  },
+  {
+    path: 'shopping-list',
+    loadComponent: () => import('./components/shopping-list/shopping-list').then((m) => m.ShoppingList),
+  },
+  {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'home',
   },
 ];

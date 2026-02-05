@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { RecipesDetails } from '../recipes-details/recipes-details';
 import { RecipesList } from '../recipes-list/recipes-list';
+import { RecipesDetails } from '../recipes-details/recipes-details';
 
 @Component({
   selector: 'app-recipes',
-  imports: [RecipesDetails, RecipesList],
+  standalone: true,
+  imports: [RecipesList, RecipesDetails],
   templateUrl: './recipes.html',
   styleUrl: './recipes.css',
 })
