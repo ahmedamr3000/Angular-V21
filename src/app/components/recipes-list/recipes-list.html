@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full flex gap-2">
   <button
     class="bg-sky-800 border-s-sky-100 border-2 mt-1 text-white p-2"
     (click)="
@@ -11,10 +11,46 @@
   >
     New
   </button>
+
+  <button 
+    class="bg-emerald-700 border-2 mt-1 text-white p-2"
+    (click)="get()">
+    Get Data (API)
+  </button>
 </div>
 
-<div class="flex justify-between flex-wrap gap-y-4">
-  @for (item of recipes(); track item.index) {
+<!-- @if (products().length > 0) {
+  <div class="mt-8 border-t-2 pt-4">
+    <h2 class="text-xl font-bold mb-4 text-sky-800">الطريقة القديمة (subscribe في السيرفيس)</h2>
+    <div class="flex justify-between flex-wrap gap-y-4">
+      @for (product of products(); track product.id) {
+        <div class="w-[48%] bg-white p-2 border rounded shadow-sm">
+          <img [src]="product.image" class="h-24 mx-auto" [alt]="product.title">
+          <h3 class="font-bold text-sm mt-2">{{ product.title }}</h3>
+          <p class="text-orange-600 font-bold">${{ product.price }}</p>
+        </div>
+      }
+    </div>
+  </div>
+} -->
+
+@if (productsWithToSignal().length > 0) {
+  <div class="mt-8 border-t-2 pt-4">
+    <h2 class="text-xl font-bold mb-4 text-emerald-700">الطريقة الجديدة (باستخدام toSignal) - بتحمل لوحدها</h2>
+    <div class="flex justify-between flex-wrap gap-y-4">
+      @for (product of productsWithToSignal(); track product.id) {
+        <div class="w-[48%] bg-white p-2 border rounded shadow-sm border-emerald-200">
+          <img [src]="product.image" class="h-24 mx-auto" [alt]="product.title">
+          <h3 class="font-bold text-sm mt-2">{{ product.title }}</h3>
+          <p class="text-emerald-600 font-bold">${{ product.price }}</p>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<div class="flex justify-between flex-wrap gap-y-4 mt-4">
+  @for (item of recipes(); track item.index) {  
     <div class="w-[48%]">
       <app-recipes-item [item]="item"></app-recipes-item>
     </div>

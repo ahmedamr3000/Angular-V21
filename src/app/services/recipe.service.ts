@@ -1,10 +1,13 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { recipe } from '../components/recipes/recipe.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
+  private http = inject(HttpClient);
   recipes = signal<recipe[]>([
     new recipe(
       1,
@@ -27,6 +30,21 @@ export class RecipeService {
   ]);
 
   selectedRecipe = signal<recipe | null>(null);
+
+
+  products = signal<any[]>([]);
+
+  // ---- دالة جديدة بترجع Observable عشان نستخدم معاها toSignal ----
+  getProducts$(): Observable<any[]> {
+    return this.http.get<any[]>('https://fakestoreapi.com/products');
+  }
+
+  getData() {
+    this.http.get<any[]>('https://fakestoreapi.com/products').subscribe({
+      next: (data) => this.products.set(data),
+      error: (err) => console.error('Failed to fetch products', err)
+    });
+  }
 
   selectRecipe(recipe: recipe) {
     this.selectedRecipe.set(recipe);
